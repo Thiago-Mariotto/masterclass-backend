@@ -10,7 +10,8 @@ const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(cors({
-  origin: 'https://masterclass-frontend-production.up.railway.app/'
+  origin: '*',
+  methods: 'GET, POST, PUT, DELETE, OPTIONS',
 }));
 
 app.post('/users', async (req, res) => {
