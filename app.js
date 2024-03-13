@@ -21,7 +21,7 @@ app.post('/users', async (req, res) => {
     return res.status(400).json({ message: 'Name and age are required' });
   }
 
-  await connection.execute('INSERT INTO users (name, age) VALUES (?, ?)', [name, idade]);
+  await connection.execute('INSERT INTO users (name, age) VALUES (?, ?)', [name, age]);
   return res.status(201).json({ message: 'User created successfully' });
 });
 
