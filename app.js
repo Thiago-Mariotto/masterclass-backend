@@ -7,10 +7,6 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const users = [{
-  name: 'Joao',
-  age: 30
-}]
 
 app.use(express.json());
 app.use(cors({
@@ -25,13 +21,12 @@ app.post('/users', async (req, res) => {
     return res.status(400).json({ message: 'Name and age are required' });
   }
 
-  // await connection.execute('INSERT INTO users (name, age) VALUES (?, ?)', [name, idade]);
-  users.push({ name, age });
+  await connection.execute('INSERT INTO users (name, age) VALUES (?, ?)', [name, idade]);
   return res.status(201).json({ message: 'User created successfully' });
 });
 
 app.get('/users', async (req, res) => {
-  // const [users] = await connection.execute('SELECT * FROM users');
+  const [users] = await connection.execute('SELECT * FROM users');
   return res.status(200).json(users);
 });
 
