@@ -18,6 +18,7 @@ app.use(cors({
 }));
 
 app.post('/users', async (req, res) => {
+  console.log('new request', req.path, req.method, req.body, new Date());
   const { name, age } = req.body;
 
   if (!name || !age) {
